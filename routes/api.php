@@ -22,6 +22,8 @@ use App\Http\Controllers\Api\StaffController;
 use App\Http\Controllers\Api\StudentParticipationController;
 use App\Http\Controllers\Api\TextbooksTeachingController;
 use App\Http\Controllers\Api\VerifyStudentController;
+use App\Http\Controllers\API\FeeController;
+use App\Http\Controllers\API\PositionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SchoolController;
 
@@ -124,6 +126,26 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('level')->name('level.')->group(function () {
         Route::get('/grades', [LevelAndSubjectController::class, 'getGrades'])->name('grades');
         Route::get('/subjects', [LevelAndSubjectController::class, 'getSubjects'])->name('subjects');
+    });
+
+    // Positions Routes
+    Route::prefix('positions')->group(function () {
+        Route::get('/', [PositionController::class, 'index'])->name('positions.index');
+        Route::post('/', [PositionController::class, 'store'])->name('positions.store');
+        Route::get('/dropdown', [PositionController::class, 'getForDropdown'])->name('positions.dropdown');
+        Route::get('/{position}', [PositionController::class, 'show'])->name('positions.show');
+        Route::put('/{position}', [PositionController::class, 'update'])->name('positions.update');
+        Route::delete('/{position}', [PositionController::class, 'destroy'])->name('positions.destroy');
+    });
+
+// Fees Routes
+    Route::prefix('fees')->group(function () {
+        Route::get('/', [FeeController::class, 'index'])->name('fees.index');
+        Route::post('/', [FeeController::class, 'store'])->name('fees.store');
+        Route::get('/dropdown', [FeeController::class, 'getForDropdown'])->name('fees.dropdown');
+        Route::get('/{fee}', [FeeController::class, 'show'])->name('fees.show');
+        Route::put('/{fee}', [FeeController::class, 'update'])->name('fees.update');
+        Route::delete('/{fee}', [FeeController::class, 'destroy'])->name('fees.destroy');
     });
 
         Route::post('/parent-participation', [ParentParticipationController::class, 'store']);

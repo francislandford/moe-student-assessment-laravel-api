@@ -13,12 +13,20 @@ class CountyController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $counties = County::query()
-            ->when($request->search, fn($q) => $q->where('county', 'like', "%{$request->search}%"))
-            ->orderBy('county')
-            ->get();   // Usually only 15 records → no pagination needed
+        // Get the authenticated user's county
+        $county = $request->user()->cat;  // or auth()->user()->cat
 
-        return response()->json(CountyResource::collection($counties));
+        $countyModel = County::where('county', '=', $county)->first();
+
+        // Check if county exists
+        if (!$countyModel) {
+            return response()->json([
+                'message' => 'County not found'
+            ], 404);
+        }
+
+        // Use new for single resource, not collection
+        return response()->json(new CountyResource($countyModel));
     }
 
     public function store(StoreCountyRequest $request): JsonResponse

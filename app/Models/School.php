@@ -15,6 +15,8 @@ class School extends Model
         'county',
         'district',
         'school_level',
+        'compliance',
+        'emis_code',
         'school_type',
         'nb_room',
         'school_ownership',
