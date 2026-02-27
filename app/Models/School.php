@@ -22,6 +22,7 @@ class School extends Model
         'school_ownership',
         'community',
         'school_code',
+        'school_closed',
         'school_name',
         'tvet',
         'accelerated',
