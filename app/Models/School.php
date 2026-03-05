@@ -38,7 +38,8 @@ class School extends Model
         'all_teacher_present',
         'verify_comment',
         'charge_fees',
-        'collector'
+        'collector',
+        'date'
     ];
 
     protected $casts = [

@@ -21,6 +21,8 @@ class Staff extends Model
         'present',
         'bio_id',
         'pay_id',
+        'excuse',
+        'reason',
         'qualification',
         'date',
     ];

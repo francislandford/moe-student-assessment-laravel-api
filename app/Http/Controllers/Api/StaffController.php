@@ -36,6 +36,8 @@ class StaffController extends Controller
             'present'      => 'nullable|string|max:11',
             'bio_id'       => 'nullable|string|max:200',
             'pay_id'       => 'nullable|string|max:150',
+            'reason'       => 'nullable|string|max:200',
+            'excuse'   => 'nullable|string|max:200',
             'qualification'=> 'nullable|string',
             'date'         => 'nullable|date',
         ]);
